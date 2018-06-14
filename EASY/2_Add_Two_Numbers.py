@@ -29,32 +29,33 @@ class Solution:
         :type l2: ListNode
         :rtype: ListNode
         """
-        head_node = curr_node = ListNode(0)
+        r_list = curr_node = ListNode(0)
         
         carry_bit = False
         
         while l1 or l2 or carry_bit:
-            val = 0
+
+            curr_val = 0
             
             if l1:
-                val += l1.val
+                curr_val += l1.val
                 l1 = l1.next
                 if l2:
-                    val += l2.val
+                    curr_val += l2.val
                     l2 = l2.next
             elif l2:
-                val += l2.val
+                curr_val += l2.val
                 l2 = l2.next
             
             if carry_bit:
-                val += 1
+                curr_val += 1
                 carry_bit = False
             
-            if val >= 10:
-                val = val % 10
+            if curr_val >= 10:
+                curr_val = curr_val % 10
                 carry_bit = True
             
-            curr_node.next = ListNode(val)
+            curr_node.next = ListNode(curr_val)
             curr_node = curr_node.next
         
-        return head_node.next
+        return r_list.next
